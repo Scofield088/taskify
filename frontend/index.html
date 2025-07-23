@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+       <script> 
+        async function signup() {
+            try{
+                const email=document.getElementById("esignup").value
+                const password=document.getElementById("psignup").value
+                const x=await axios.post("http://localhost:3000/signup",{
+                    email:email,
+                    password:password
+                })
+                alert("Signup successfull")
+            }catch(e){
+                alert("signup failed")
+            }
+        }
+        async function signin(){
+            try{
+                const email=document.getElementById("esignup").value
+                const password=document.getElementById("psignup").value
+                const x=await axios.post("http://localhost:3000/signin",{
+                    email:email,
+                    password:password
+                })
+                localStorage.setItem("token",x.data.token)
+                localStorage.setItem("userId",x.data.userId)
+                alert("Signin successfull")
+                window.location.href="todo.html"
+            }catch(e){
+                alert("signin failed")
+            }   
+        }
+        function switchin(){
+            document.getElementById("sign").innerHTML="signIn"
+            document.getElementById("btn").innerHTML="Singin"
+            document.getElementById("btn").setAttribute("onclick","signin()");
+            document.getElementById("switch").innerHTML=`Dont have an account? <a href="#" onclick="switchup()">Signup</a>`
+        }
+        function switchup(){
+            document.getElementById("sign").innerHTML="signup"
+            document.getElementById("btn").innerHTML="Singup"
+            document.getElementById("btn").setAttribute("onclick","signup()");
+            document.getElementById("switch").innerHTML=`Already have an account? <a href="#" onclick="switchin()"">Signin</a>`
+        }
+       </script>
+    <title>Taskify</title>
+</head>
+<body>
+    <div>
+        <p id="sign">Signup</p>
+        <ul type="none">
+        <li>
+        <label>Email</label>
+        <input id="esignup" placeholder="enter email" type="email">
+        </li>
+        <li>
+        <label>Password</label>
+        <input id="psignup" placeholder="enter password" type="password">
+        </li>
+        <button onclick="signup()" id="btn">Signup</button>
+        </ul>
+        <p id="switch">Already have and account?<a href="#" onclick="switchin()" id="signin">Sign in</a></p>
+    </div>
+</body>
+</html>

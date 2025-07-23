@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="todo.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+    <script>
+        async function addtodo(){
+            const token = localStorage.getItem("token");
+            const todo=document.getElementById("add").value
+            const userId=localStorage.getItem("userId")
+            const div=document.getElementById("todo");
+            try{
+                const x = await axios.post("http://localhost:3000/todo", {
+                    todo: todo
+                    }, {
+                    headers: {
+                        token: token
+                    }
+                });
+            alert("Todo added successfully");
+            document.getElementById("add").value=""
+            fetchtodo()
+            }catch(e){
+                alert("failed to add todo")
+                
+            }
+        }
+        async function fetchtodo(){
+            const token=localStorage.getItem("token")
+            const userId=localStorage.getItem("userId")
+            try{
+                const x = await axios.get("http://localhost:3000/todo", {
+                    headers: {
+                        token: token,
+                        userId:userId
+                    }
+                });
+                const todos=x.data
+                const z=document.getElementById("todo")
+                z.innerHTML = "";
+                for(let i=0;i<todos.length;i++){
+                    const p=document.createElement("p")
+                    const btn=document.createElement("button")
+                    btn.innerHTML="Delete"
+                    p.textContent=todos[i].title
+                    z.appendChild(p)
+                    p.appendChild(btn)
+                    btn.onclick=async ()=>{
+                        try{
+                            const x = await axios.delete("http://localhost:3000/todo", {
+                                headers: {
+                                    token: token,
+                                    userId:userId
+                                },
+                                data:{
+                                    title:todos[i].title
+                                }
+                            });
+                            z.removeChild(p)
+                            alert("todo deleted")
+                            fetchtodo(); 
+                        }catch(e){
+                            alert("error while deleting")
+                        }
+                    }
+                }
+            }catch(e){
+                alert("failed to fetch details")
+                
+            }
+        }
+        window.onload = fetchtodo;
+    </script>
+    <title>tasks</title>
+</head>
+<body>
+    <div>
+        Your todos
+        <input id="add" type="text" placeholder="enter tasks">
+        <button onclick="addtodo()">Add Todo</button>
+        <div id="todo"></div>
+    </div>
+</body>
+</html>

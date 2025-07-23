@@ -1,0 +1,147 @@
+/* index.css */
+
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body styles */
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #6b8dd6, #a1c4fd);
+  padding: 20px;
+}
+
+/* Container div */
+body > div {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  padding: 30px 40px;
+  width: 100%;
+  max-width: 400px;
+  transition: box-shadow 0.3s ease;
+}
+
+/* On hover, add subtle elevation */
+body > div:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+
+/* Title (Signup / Signin heading) */
+#sign {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: 1.5px;
+  text-align: center;
+  margin-bottom: 25px;
+  text-transform: capitalize;
+}
+
+/* Style the ul to remove default styles and add spacing */
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Label styles */
+label {
+  color: #34495e;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  font-size: 0.95rem;
+}
+
+/* Input fields styles */
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 2px solid #bdc3c7;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline-offset: 2px;
+}
+
+/* Input focus effect */
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #5dade2;
+  box-shadow: 0 0 8px rgba(93, 173, 226, 0.5);
+  outline: none;
+}
+
+/* Button styles */
+button#btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px 0;
+  background: #2980b9;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 12px rgba(41, 128, 185, 0.4);
+}
+
+/* Button hover */
+button#btn:hover {
+  background: #1f669f;
+  box-shadow: 0 8px 20px rgba(31, 102, 159, 0.6);
+}
+
+/* "Switch" paragraph style */
+#switch {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  text-align: center;
+  user-select: none;
+}
+
+/* Switch link style */
+#switch a {
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+/* Switch link hover */
+#switch a:hover {
+  text-decoration: underline;
+  color: #1f669f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  body > div {
+    padding: 25px 25px;
+    max-width: 95vw;
+  }
+
+  #sign {
+    font-size: 1.6rem;
+  }
+
+  button#btn {
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+}
