@@ -8,7 +8,7 @@ const JWT_SECRET="dontmesswithotherswarphonesorderitS"
 const cors=require("cors")
 
 
-mongoose.connect("mongodb+srv://harshitha0523:1RLAr8jhcmXZ6aoN@cluster0.8dcmhwd.mongodb.net/taskify")
+mongoose.connect("")
 const app=express()
 app.use(express.json())
 app.use(cors())
